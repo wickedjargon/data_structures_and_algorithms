@@ -1,0 +1,83 @@
+* Chapter 1:
+
+** question:
+1. For an array containing 100 elements, provide the number of steps the
+   following operations would take:
+
+a. Reading
+*** answer:
+1
+
+b. Searching for a value not contained within the array
+*** answer:
+100
+
+c. Insertion at the beginning of the array
+*** answer:
+101
+
+d. Insertion at the end of the array
+*** answer:
+1
+
+e. Deletion at the beginning of the array
+*** answer:
+101
+
+f. Deletion at the end of the array
+*** answer:
+1
+
+
+** question:
+2. For an array-based set containing 100 elements, provide the number of
+steps the following operations would take:
+
+a. Reading
+*** answer:
+1
+
+b. Searching for a value not contained within the array
+*** answer:
+100
+
+c. Insertion of a new value at the beginning of the set
+*** answer:
+201
+
+d. Insertion of a new value at the end of the set
+*** answer:
+101
+
+e. Deletion at the beginning of the set
+*** answer:
+100
+
+f. Deletion at the end of the set
+*** answer:
+1
+
+** question:
+3. Normally the search operation in an array looks for the first instance of
+a given value. But sometimes we may want to look for every instance of
+a given value. For example, say we want to count how many times the
+value “apple” is found inside an array. How many steps would it take to
+find all the “apples”? Give your answer in terms of N.
+*** answer:
+N
+
+* Chapter 2:
+
+1. How many steps would it take to perform a linear search for the number
+8 in the ordered array, [2, 4, 6, 8, 10, 12, 13]?
+*** answer:
+4
+
+2. How many steps would binary search take for the previous example?
+*** answer:
+1
+
+3. What is the maximum number of steps it would take to perform a binary
+search on an array of size 100,000?
+*** answer:
+17 (correct answer: about 16)
