@@ -1,6 +1,5 @@
 * Chapter 1:
 
-** question:
 1. For an array containing 100 elements, provide the number of steps the
    following operations would take:
 
@@ -29,7 +28,6 @@ f. Deletion at the end of the array
 1
 
 
-** question:
 2. For an array-based set containing 100 elements, provide the number of
 steps the following operations would take:
 
@@ -57,7 +55,6 @@ f. Deletion at the end of the set
 *** answer:
 1
 
-** question:
 3. Normally the search operation in an array looks for the first instance of
 a given value. But sometimes we may want to look for every instance of
 a given value. For example, say we want to count how many times the
@@ -81,3 +78,257 @@ N
 search on an array of size 100,000?
 *** answer:
 17 (correct answer: about 16)
+
+* Chapter 3:
+
+1. Use Big O Notation to describe the time complexity of the following function
+that determines whether a given year is a leap year:
+
+#+BEGIN_SRC javascript
+  function isLeapYear(year) {
+      return (year % 100 === 0) ? (year % 400 === 0) : (year % 4 === 0);
+  }
+#+END_SRC
+
+*** Answer:
+O(1)
+
+2.Use Big O Notation to describe the time complexity of the following function
+that sums up all the numbers from a given array:
+
+#+BEGIN_SRC javascript
+  function arraySum(array) {
+      let sum = 0;
+      for (let i = 0; i < array.length; i++) {
+          sum += array[i];
+      }
+      return sum;
+  }
+#+END_SRC
+
+
+*** Answer:
+O(N)
+
+
+
+3. The following function is based on the age-old analogy used to describe
+the power of compounding interest:
+
+Imagine you have a chessboard and put a single grain of rice on one
+square. On the second square, you put 2 grains of rice, since that is
+double the amount of rice on the previous square. On the third square,
+you put 4 grains. On the fourth square, you put 8 grains, and on the fifth
+square, you put 16 grains, and so on.
+
+The following function calculates which square you’ll need to place a
+certain number of rice grains. For example, for 16 grains, the function
+will return 5, since you will place the 16 grains on the fifth square.
+Use Big O Notation to describe the time complexity of this function, which
+is below:
+
+#+BEGIN_SRC javascript
+  function chessboardSpace(numberOfGrains) {
+      let chessboardSpaces = 1;
+      let placedGrains = 1;
+      while (placedGrains < numberOfGrains) {
+          placedGrains *= 2;
+          chessboardSpaces += 1;
+      }
+
+      return chessboardSpaces;
+  }
+#+END_SRC
+O(log N)
+
+4.The following function accepts an array of strings and returns a new array
+that only contains the strings that start with the character "a". Use Big O
+Notation to describe the time complexity of the function:
+
+
+#+BEGIN_SRC javascript
+  function selectAStrings(array) {
+      let newArray = [];
+      for (let i = 0; i < array.length; i++) {
+          if (array[i].startsWith("a")) {
+              newArray.push(array[i]);
+          }
+      }
+      return newArray;
+  }
+#+END_SRC
+O(N)
+
+5. The following function calculates the median from an ordered array.
+Describe its time complexity in terms of Big O Notation:
+
+
+#+BEGIN_SRC javascript
+  function median(array) {
+      const middle = Math.floor(array.length / 2);
+      // If array has even amount of numbers:
+      if (array.length % 2 === 0) {
+          return (array[middle - 1] + array[middle]) / 2;
+      } else { // If array has odd amount of numbers:
+          return array[middle];
+      }
+  }
+#+END_SRC
+O(1)
+* Chapter 4:
+
+
+1. Replace the question marks in the following table to describe how many steps
+occur for a given number of data elements across various types of Big O:
+
+*** COMMENT answer:
+
+| N Elements | O(N) | O(log N) | O(N^2) |
+|        100 |  100 |        6 |   1000 |
+|       2000 | 2000 |       10 |  20000 |
+
+
+2. If we have an O(N2) algorithm that processes an array and find that it
+takes 256 steps, what is the size of the array?
+8
+
+3. Use Big O Notation to describe the time complexity of the following func-
+tion. It finds the greatest product of any pair of two numbers within a
+given array:
+#+BEGIN_SRC python
+  def greatestProduct(array):
+      greatestProductSoFar = array[0] * array[1]
+      for i, iVal in enumerate(array):
+          for j, jVal in enumerate(array):
+              if i != j and iVal * jVal > greatestProductSoFar:
+                  greatestProductSoFar = iVal * jVal
+      return greatestProductSoFar
+#+END_SRC
+O(N^2)
+
+
+4.The following function finds the greatest single number within an array,
+but has an efficiency of O(N^2). Rewrite the function so that it becomes a
+speedy O(N):
+
+
+#+BEGIN_SRC python
+  def greatestNumber(array):
+      for i in array:
+          # Assume for now that i is the greatest:
+          isIValTheGreatest = True
+          for j in array:
+              # If we find another value that is greater than i,
+              # i is not the greatest:
+              if j > i:
+                  isIValTheGreatest = False
+
+          # If, by the time we checked all the other numbers, i
+          # is still the greatest, it means that i is the greatest number:
+          if isIValTheGreatest:
+              return i
+#+END_SRC
+
+** answer:
+#+begin_src python
+  def greatestNumber(array):
+      greatest = array[0]
+      for i in array[1:]:
+          if i > greatest:
+              greatest = i
+      return greatest
+#+end_src
+
+
+* Chapter 5
+
+
+3. Use Big O Notation to describe the time complexity of the following func-
+tion, which returns the sum of all numbers of an array after the numbers
+have been doubled:
+
+#+BEGIN_SRC ruby
+def double_then_sum(array)
+  doubled_array = []
+
+  array.each do |number|
+    doubled_array << number *= 2
+  end
+
+  sum = 0
+
+  doubled_array.each do |number|
+    sum += number
+  end
+
+  return sum
+end
+#+END_SRC
+O(N)
+
+4.Use Big O Notation to describe the time complexity of the following func-
+tion, which accepts an array of strings and prints each string in multiple
+cases:
+
+
+#+BEGIN_SRC ruby
+def multiple_cases(array)
+  array.each do |string|
+    puts string.upcase
+    puts string.downcase
+    puts string.capitalize
+  end
+end
+#+END_SRC
+O(N)
+
+5.The next function iterates over an array of numbers, and for each number
+whose index is even, it prints the sum of that number plus every number
+in the array. What is this function’s efficiency in terms of Big O Notation?
+
+
+#+BEGIN_SRC ruby
+def every_other(array)
+  array.each_with_index do |number, index|
+    if index.even?
+      array.each do |other_number|
+        puts number + other_number
+      end
+    end
+  end
+end
+#+END_SRC
+O(N^2)
+
+* Chapter 6
+
+
+The following function returns whether or not a capital “X” is present
+within a string.
+
+#+BEGIN_SRC ruby
+  function containsX(string) {
+    foundX = false;
+    for(let i = 0; i < string.length; i++) {
+         if (string[i] === "X") {
+              foundX = true;
+            }
+       }
+      return foundX;
+  }
+#+END_SRC
+What is this function’s time complexity in terms of Big O Notation?
+Then, modify the code to improve the algorithm’s efficiency for best- and
+average-case scenarios.
+O(N)
+
+#+BEGIN_SRC ruby
+  function containsX(string) {
+    for(let i = 0; i < string.length; i++) {
+         if (string[i] === "X") {
+              return true;
+            }
+       }
+      return false;
+  }
+#+END_SRC
